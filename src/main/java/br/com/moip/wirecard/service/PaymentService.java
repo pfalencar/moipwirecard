@@ -66,6 +66,7 @@ public class PaymentService {
     }
 
     public Optional<Payment> findById(Long paymentId) {
+
         return paymentRepository.findById(paymentId);
     }
 
@@ -74,7 +75,7 @@ public class PaymentService {
         Payment payment = new Payment();
         payment.setAmount(paymentPostRequestBody.getAmount());
         payment.setType(paymentPostRequestBody.getType());
-        payment.setBoletoNumber(new Random().nextLong());
+        payment.setBoletoNumber(Math.abs(new Random().nextLong()));
         payment.setPaymentStatus("Em espera");
         payment.setClient(client);
         payment.setBuyer(buyer);
